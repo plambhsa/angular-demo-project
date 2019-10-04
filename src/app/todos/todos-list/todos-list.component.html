@@ -1,0 +1,13 @@
+<h1>Todos</h1>
+
+<ul>
+	<li
+		*ngFor="let todo of todos$ | async; let i = index; let f = first; let l = last"
+		[class.completed]="todo.completed"
+	>
+		<input type="checkbox" [ngModel]="todo.completed" (ngModelChange)="updateTodo(todo, $event)" />
+		{{ todo.id }}: {{ todo.title }} index: {{ i }} first {{ f }} last: {{ l }}
+	</li>
+</ul>
+
+<input type="text" class="form-control" #title (keyup.enter)="addTodo(title.value); title.value = ''" />
